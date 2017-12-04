@@ -50,4 +50,4 @@ typeof(y)
 # Correct way to convert factor to numerics
 x <- as.numeric(as.character(z))
 
-x
+typeof(x)
