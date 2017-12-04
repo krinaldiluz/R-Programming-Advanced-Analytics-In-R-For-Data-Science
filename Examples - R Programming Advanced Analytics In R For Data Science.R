@@ -1,30 +1,53 @@
-# Configurando um diretório para armazenar os scripts
+# Configurando um diretÃ³rio para armazenar os scripts
 getwd()
 setwd("C:\\Users\\Home\\Documents\\Material de Estudo\\Linguagem R\\R Programming Advanced Analytics In R For Data Science")
 
-# Carrega um csv para a uma variável
+# Carrega um csv para a uma variÃ¡vel
 fin <- read.csv("Future-500.csv")
 
-# Imprimi a variável
+# Imprimi a variÃ¡vel
 fin
 
-# Top registros da variável
+# Top registros da variÃ¡vel
 head(fin)
 
-# Últimos 10 registros da variável
+# Ãšltimos 10 registros da variÃ¡vel
 tail(fin, 10)
 
-#Tamanho dos registros da variável
+#Tamanho dos registros da variÃ¡vel
 str(fin)
 
-#Resumo das informações armazenadas
+#Resumo das informaÃ§Ãµes armazenadas
 summary(fin)
 
-#Mudando de não fator para um fator
+#Mudando de nÃ£o fator para um fator
 fin$ID <- factor(fin$ID)
 
 fin$Inception <- factor(fin$Inception)
 
-#Verificando após a alteração
+#Verificando apÃ³s a alteraÃ§Ã£o
 str(fin)
 summary(fin)
+
+#Factor Variable Trap (FVT)
+
+#Converting into Numerics For Characters:
+a <- c("12", "13", "14", "12", "12")
+a
+typeof(a)
+
+b <- as.numeric(a)
+b
+typeof(b)
+
+#Converting into Numerics For Factors:
+z <- factor(c("12", "13", "14", "12", "12"))
+z
+y <- as.numeric(z)
+y
+typeof(y)
+
+# Correct way to convert factor to numerics
+x <- as.numeric(as.character(z))
+
+x
