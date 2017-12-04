@@ -40,6 +40,8 @@ b <- as.numeric(a)
 b
 typeof(b)
 
+
+
 #Converting into Numerics For Factors:
 z <- factor(c("12", "13", "14", "12", "12"))
 z
@@ -51,3 +53,11 @@ typeof(y)
 x <- as.numeric(as.character(z))
 
 typeof(x)
+
+
+#FVT
+fin$Profit <- factor(fin$Profit)
+
+str(fin)
+
+
