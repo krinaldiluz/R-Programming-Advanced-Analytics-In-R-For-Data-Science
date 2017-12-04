@@ -56,8 +56,11 @@ typeof(x)
 
 
 #FVT
-fin$Profit <- factor(fin$Profit)
+#fin$Profit <- factor(fin$Profit)
 
 str(fin)
 
 
+summary(fin)
+
+#fin$Profit <- as.numeric(fin$Profit)
