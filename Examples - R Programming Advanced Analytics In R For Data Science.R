@@ -93,7 +93,39 @@ head(fin, 24)
 fin[!complete.cases(fin),]
 
 
+fin[fin$Revenue == 9746272,]
 
+#Filtering: using which() for non-missing data
+which(fin$Revenue == 9746272)
+fin[which(fin$Revenue == 9746272), ]
+fin[which(fin$Employees == 45), ]
+
+#Filtering: using is.na() for missing data
+head(fin, 24)
+
+fin$Expenses == NA
+fin[fin$Expenses == NA,]
+
+#Example
+a<- c(1, 24, 543, NA, 76, 45, NA)
+is.na(a)
+
+is.na(fin$Expenses)
+fin[is.na(fin$Expenses),]
+
+fin[is.na(fin$State),]
+
+#Removing records with missing data
+
+fin_backup <- fin
+
+fin[!complete.cases(fin),]
+fin[is.na(fin$Industry),]
+fin[!is.na(fin$Industry),] #oposto
+
+#Removing
+fin <- fin[!is.na(fin$Industry),]
+fin
 
 
 
