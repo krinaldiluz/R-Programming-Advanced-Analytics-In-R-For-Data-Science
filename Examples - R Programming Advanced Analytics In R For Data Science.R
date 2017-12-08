@@ -119,6 +119,8 @@ fin[is.na(fin$State),]
 
 fin_backup <- fin
 
+
+
 fin[!complete.cases(fin),]
 fin[is.na(fin$Industry),]
 fin[!is.na(fin$Industry),] #oposto
@@ -127,5 +129,40 @@ fin[!is.na(fin$Industry),] #oposto
 fin <- fin[!is.na(fin$Industry),]
 fin
 
+#Resetting the dataframe index
+fin <- fin_backup
 
+#Option 1
+rownames(fin) <- 1:nrow(fin)
 
+#Option 2
+rownames(fin) <- NULL
+
+tail(fin)
+
+#Replacing Missing Data: Factual Analysis
+
+#Check which rows dont have all informations
+fin[!complete.cases(fin),]
+
+#Getting the rows with empty state info
+fin[is.na(fin$State),]
+
+#Restrict to get just city with New York value
+fin[is.na(fin$State) & fin$City=="New York",]
+
+#Change the state from empty to state value where city is equal to New York
+fin[is.na(fin$State) & fin$City=="New York","State"] <- "NY"
+
+#check
+fin[c(11,377),]
+fin[fin$City=="New York",]
+
+#Restrict to get just city with New York value
+fin[is.na(fin$State) & fin$City=="San Francisco",]
+
+#Change the state from empty to state value where city is equal to New York
+fin[is.na(fin$State) & fin$City=="San Francisco","State"] <- "CA"
+
+#Check
+fin[fin$City=="San Francisco",]
