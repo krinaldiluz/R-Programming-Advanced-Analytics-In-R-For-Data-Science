@@ -166,3 +166,64 @@ fin[is.na(fin$State) & fin$City=="San Francisco","State"] <- "CA"
 
 #Check
 fin[fin$City=="San Francisco",]
+
+
+#Replacing Missing Data: Median Imputation Method (Part 1)
+fin[!complete.cases(fin),]
+
+median(fin[fin$Industry=="Retail","Employees"], na.rm=TRUE)
+
+mean(fin[,"Employees"], na.rm=TRUE)
+
+mean(fin[fin$Industry=="Retail","Employees"], na.rm=TRUE)
+
+#Check the median for the employees column with Retail industry
+med_empl_retail <- median(fin[fin$Industry=="Retail","Employees"], na.rm=TRUE)
+med_empl_retail
+
+fin[is.na(fin$Employees) & fin$Industry=="Retail",]
+
+#Insert the median in the empty rows for Retail industries
+fin[is.na(fin$Employees) & fin$Industry=="Retail"] <- med_empl_retail
+
+#Check:
+fin[3,]
+
+median(fin[fin$Industry=="Financial Services","Employees"], na.rm=TRUE)
+med_empl_financial <- median(fin[fin$Industry=="Financial Services","Employees"], na.rm=TRUE)
+med_empl_financial
+fin[is.na(fin$Employees) & fin$Industry=="Financial Services","Employees"] <- med_empl_financial
+
+fin[330,"Employees"]
+
+#Replacing Missing Data: Median Imputation Method (Part 2)
+fin[!complete.cases(fin),]
+
+med_growth_constr <-median(fin[fin$Industry=="Construction","Growth"], na.rm=TRUE)
+med_growth_constr
+fin[is.na(fin$Growth) & fin$Industry=="Construction","Growth"] <- med_growth_constr
+
+#Replacing Missing Data: Median Imputation Method (Part 3)
+#Revenue to Construction
+med_revenue_constr <- median(fin[fin$Industry=="Construction","Revenue"], na.rm=TRUE)
+fin[is.na(fin$Revenue) & fin$Industry=="Construction",]
+fin[is.na(fin$Revenue) & fin$Industry=="Construction", "Revenue"] <- med_revenue_constr
+
+#Expenses
+med_expenses_constr <-median(fin[fin$Industry=="Construction", "Expenses"], na.rm=TRUE)
+med_expenses_constr
+fin[is.na(fin$Expenses) & fin$Industry=="Construction" & is.na(fin$Profit),]
+fin[is.na(fin$Expenses) & fin$Industry=="Construction" & is.na(fin$Profit), "Expenses"] <- med_expenses_constr
+
+fin[!complete.cases(fin),]
+
+#Replacing Missing Data: Deriving values
+#Revenue - Expenses = Profit
+
+fin[is.na(fin$Profit),"Profit"] <- fin[is.na(fin$Profit),"Revenue"] - fin[is.na(fin$Profit),"Expenses"]
+fin[c(8,24),]
+
+#Expenses = Revenue - Profit
+fin[is.na(fin$Expenses), "Expenses"] <- fin[is.na(fin$Expenses),"Revenue"] - fin[is.na(fin$Expenses),"Profit"]
+
+fin[15,]
