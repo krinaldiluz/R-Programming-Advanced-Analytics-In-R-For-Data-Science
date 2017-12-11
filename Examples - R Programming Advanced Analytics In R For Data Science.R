@@ -227,3 +227,22 @@ fin[c(8,24),]
 fin[is.na(fin$Expenses), "Expenses"] <- fin[is.na(fin$Expenses),"Revenue"] - fin[is.na(fin$Expenses),"Profit"]
 
 fin[15,]
+
+#Visualization
+#install.packages("ggplot2")
+library(ggplot2)
+#A scatterplot classfied by industry showing revenue, expenses, profit
+p <- ggplot(data=fin)
+p
+p + geom_point(aes(x=Revenue, y=Expenses, colour=Industry, size=Profit))
+
+#A scatterplot that includes industry trends for the expenses-revenue relationship
+d <- ggplot(data=fin, aes(x=Revenue, y=Expenses, colour=Industry))
+d + geom_point() + geom_smooth(fill=NA, size=1.2)
+
+#BoxPlots showing growth by industry
+f <- ggplot(data=fin, aes(x=Industry, y=Growth, colour=Industry))
+f + geom_boxplot(size = 1)
+
+#Extra
+f + geom_jitter() + geom_boxplot(size = 1, alpha = 0.5, outlier.color = NA)
