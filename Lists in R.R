@@ -23,3 +23,13 @@ summary(util)
 
 #Derive utilization column
 util$Utilization = 1 - util$Percent.Idle
+
+#Handling Date-Time in R
+
+?POSIXct
+util$PosixTime <- as.POSIXct(util$Timestamp, format="%d/%m/%Y %H:%M")
+
+#TIP: como reorganizar as colunas em um data.frame:
+util$Timestamp <- NULL
+# Trocando a ordem das colunas
+util <- util[,c(4,1,2,3)]
