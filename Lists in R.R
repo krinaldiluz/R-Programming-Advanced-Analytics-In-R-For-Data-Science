@@ -76,3 +76,27 @@ rm(list_rl1)
 list_rl1 <- list(Machine="RL1", Stats=util_stats_rl1, LowThresold=util_under_90_flag)
 
 list_rl1
+
+#Extracting components of a list
+#three ways:
+#[] - will always return a list
+#[[]] - will always return the actual object
+#$ - same as [[]] but prettier
+
+list_rl1
+
+list_rl1[1]
+list_rl1[[1]]
+list_rl1$Machine
+
+list_rl1[2]
+typeof(list_rl1[2])
+
+list_rl1[[2]]
+typeof(list_rl1[[2]])
+
+list_rl1$Stats
+
+#Access the 3rd element of the second value
+list_rl1[[2]][3]
+list_rl1$Stats[3]
