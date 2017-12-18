@@ -100,3 +100,56 @@ list_rl1$Stats
 #Access the 3rd element of the second value
 list_rl1[[2]][3]
 list_rl1$Stats[3]
+
+#Adding and deleting list components
+list_rl1
+
+list_rl1[3] <- "New Information"
+#Another way to add a component < via the $
+#We will add:
+#Vector: All hours where utilization is unknown (NA's)
+list_rl1$UnknownHours <- RL1[is.na(RL1$Utilization),"PosixTime"]
+
+#Removing a component from a list
+list_rl1[4] <- NULL
+
+#!!Notice: Numeration has shifted
+list_rl1
+
+#Add another component:
+#Dataframe inside a list
+list_rl1$Data <- RL1
+list_rl1
+
+summary(list_rl1)
+
+str(list_rl1)
+
+#Subsetting a list
+list_rl1$UnknownHours[1]
+list_rl1[[4]][1]
+
+#Let's proceed...
+#Filtering from one component until the third
+list_rl1[1:3]
+#Filtering the first and the forth component
+list_rl1[c(1,4)]
+
+sublist_rl1 <- list_rl1[c("Machine", "Stats")]
+sublist_rl1
+sublist_rl1[[2]][2]
+
+#Building a timeseries plot
+library(ggplot2)
+
+p <- ggplot(data=util)
+my_plot <- p + geom_line(aes(x=PosixTime, y=Utilization, colour=Machine), size = 1.2) +
+  facet_grid(Machine~.) + 
+  geom_hline(yintercept = 0.90, colour = "Gray", size = 1.2,
+             linetype=3)
+
+
+
+list_rl1$Plot <- my_plot
+
+list_rl1
