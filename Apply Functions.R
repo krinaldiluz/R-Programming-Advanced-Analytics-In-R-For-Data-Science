@@ -34,3 +34,24 @@ Weather
 Weather[3]
 Weather[[3]]
 Weather$Houston
+
+#using Apply
+?apply
+
+apply(Chicago, 1, mean)
+#check
+mean(Chicago["DaysWithPrecip",])
+
+Chicago
+apply(Chicago, 1, max)
+apply(Chicago, 1, min)
+
+#for practice
+apply(Chicago, 2, max)
+apply(Chicago, 2, min)
+
+#Compare
+apply(Chicago, 1, mean)
+apply(NewYork, 1, mean)
+apply(Houston, 1, mean)
+apply(SanFrancisco, 1, mean)
