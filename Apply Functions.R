@@ -71,3 +71,33 @@ names(output) <- rownames(Chicago)
 
 #2. via apply function
 apply(Chicago, 1, mean)
+
+#Using lapply()
+?lapply
+
+Chicago
+
+#Invert rows and columns
+t(Chicago)
+t(Weather$Chicago)
+
+lapply(Weather, t) #list t(Weather$Chicago) t(Weather$NewYork), t(Weather$Houston), t(Weather$SanFrancisco)
+
+mynewlist <- lapply(Weather, t)
+mynewlist
+
+#example 2
+Chicago
+rbind(Chicago, NewRow=1:12)
+lapply(Weather, rbind, newRow=1:12)
+
+#example 3
+?rowMeans
+rowMeans(Chicago) #identical to: apply(Chicago, 1, mean)
+lapply(Weather, rowMeans) #the same result of the previous function
+
+#rowMeans
+#colMeans
+#rowSums
+#colSums
+
