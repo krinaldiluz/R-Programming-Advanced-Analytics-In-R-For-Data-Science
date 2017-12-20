@@ -101,3 +101,50 @@ lapply(Weather, rowMeans) #the same result of the previous function
 #rowSums
 #colSums
 
+#Combining lappy with [] operator
+Weather
+Weather[[1]][1,1]
+Weather$Chicago[1,1] 
+lapply(Weather, "[", 1, 1)
+
+#Getting the first row of every element
+lapply(Weather, "[", 1, )
+
+#Getting the data from only March in each element
+lapply(Weather, "[", , 3)
+
+#Adding your own functions
+lapply(Weather, rowMeans)
+Weather
+
+#Get the first row for each element
+lapply(Weather, function(x) x[1,])
+
+#Get the 5° row for each element
+lapply(Weather, function(x) x[5,])
+
+#Get the 12° column for each row
+lapply(Weather, function(x) x[,12])
+
+lapply(Weather, function(z) z[1,] -z[2,])
+lapply(Weather, function(z) round((z[1,] -z[2,])/z[2,],2))
+
+#Using sapply()
+
+#AvgHigh_F for July:
+lapply(Weather, "[", 1, 7)
+#AvgHigh_F for July with the output in a list:
+sapply(Weather, "[", 1, 7)
+
+#AvgHigh_F for 4th quarter:
+lapply(Weather, "[", 1, 10:12)
+sapply(Weather, "[", 1, 10:12)
+
+#Another example:
+lapply(Weather, rowMeans)
+sapply(Weather, rowMeans)
+round(sapply(Weather, rowMeans),2)
+
+#Another example:
+lapply(Weather, function(z) round((z[1,] -z[2,])/z[2,],2))
+sapply(Weather, function(z) round((z[1,] -z[2,])/z[2,],2))
