@@ -55,3 +55,19 @@ apply(Chicago, 1, mean)
 apply(NewYork, 1, mean)
 apply(Houston, 1, mean)
 apply(SanFrancisco, 1, mean)
+
+#Recreating the apply function with loops (advanced topic)
+Chicago
+#find the eman of every row:
+#1. via loops
+output <- NULL #Preparing an empty vector
+for(i in 1:5) { #run cycle
+  output[i] <- mean(Chicago[i,])
+}
+#Let's see the result:
+output
+#Let's add the names to the vector
+names(output) <- rownames(Chicago)
+
+#2. via apply function
+apply(Chicago, 1, mean)
