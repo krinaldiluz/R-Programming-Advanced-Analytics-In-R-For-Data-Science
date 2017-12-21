@@ -148,3 +148,32 @@ round(sapply(Weather, rowMeans),2)
 #Another example:
 lapply(Weather, function(z) round((z[1,] -z[2,])/z[2,],2))
 sapply(Weather, function(z) round((z[1,] -z[2,])/z[2,],2))
+
+#Nesting Apply Functions
+Weather
+lapply(Weather, rowMeans)
+
+Chicago
+apply(Chicago, 1, max)
+
+#apply across whole list
+lapply(Weather, apply, 1, max)
+#tidy up:
+sapply(Weather, apply, 1, max)
+sapply(Weather, apply, 1, min)
+
+#Very advanced topic
+#which.max
+Chicago
+which.max(Chicago[1,])
+names(which.max(Chicago[1,]))
+
+#We will have: apply - to iterate over rows of the matrix
+#and we will have: lapply or sapply - to iterate over components of the list
+apply(Chicago, 1, function(x) names(which.max(x)))
+
+lapply(Weather, function(y) apply(y, 1, function(x) names(which.max(x))))
+sapply(Weather, function(y) apply(y, 1, function(x) names(which.max(x))))
+
+lapply(Weather, function(y) apply(y, 1, function(x) names(which.min(x))))
+sapply(Weather, function(y) apply(y, 1, function(x) names(which.min(x))))
